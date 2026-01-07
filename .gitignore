@@ -1,0 +1,7 @@
+rag_env_mine/
+venv/
+env/
+__pycache__/
+*.pyc
+*.dll
+*.pyd

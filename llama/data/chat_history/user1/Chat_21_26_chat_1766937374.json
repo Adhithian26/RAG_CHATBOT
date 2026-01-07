@@ -1,0 +1,17 @@
+{
+  "id": "Chat_21_26_chat_1766937374",
+  "topic": "Chat 21:26",
+  "created_at": 1766937374.9456978,
+  "messages": [
+    {
+      "role": "user",
+      "content": "what is the story behind the london bridge rhymes?",
+      "created_at": 1766937400.012553
+    },
+    {
+      "role": "assistant",
+      "content": "Error processing your question: Collection expecting embedding with dimension of 384, got 768",
+      "created_at": 1766937400.1557298
+    }
+  ]
+}

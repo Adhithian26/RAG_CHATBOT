@@ -1,0 +1,30 @@
+{
+  "UNIT-1.pdf": {
+    "chunk_count": 54,
+    "file_size": 680859,
+    "processed_at": 1761295794.3419409,
+    "file_path": "data/uploaded_pdfs\\UNIT-1.pdf",
+    "status": "\u2705 Processed"
+  },
+  "AI for Everyone.pdf": {
+    "chunk_count": 101,
+    "file_size": 1990747,
+    "processed_at": 1761295824.620887,
+    "file_path": "data/uploaded_pdfs\\AI for Everyone.pdf",
+    "status": "\u2705 Processed"
+  },
+  "2024-wttc-introduction-to-ai.pdf": {
+    "chunk_count": 101,
+    "file_size": 15513125,
+    "processed_at": 1761295854.728928,
+    "file_path": "data/uploaded_pdfs\\2024-wttc-introduction-to-ai.pdf",
+    "status": "\u2705 Processed"
+  },
+  "ug_aff_2020.pdf": {
+    "chunk_count": 101,
+    "file_size": 565508,
+    "processed_at": 1761296043.8264484,
+    "file_path": "data/uploaded_pdfs\\ug_aff_2020.pdf",
+    "status": "\u2705 Processed"
+  }
+}

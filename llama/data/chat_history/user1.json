@@ -1,0 +1,350 @@
+[
+  {
+    "role": "assistant",
+    "content": "\ud83d\udc4b Hello! I can now search through your uploaded documents. Ask me anything!"
+  },
+  {
+    "role": "user",
+    "content": "how can we define AI"
+  },
+  {
+    "role": "assistant",
+    "content": "I found this information: PDF content from UNIT-1_20251022_181138.pdf..."
+  },
+  {
+    "role": "user",
+    "content": "define artificial intelligence"
+  },
+  {
+    "role": "assistant",
+    "content": "I found this information: PDF content from ug_aff_2020_20251022_182613.pdf..."
+  },
+  {
+    "role": "user",
+    "content": "how can we define AI"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'UNIT-1':\n\ne which has \na great scope in future. AI holds a tendency to cause a machine t o work as a \nhuman.   Page 2:\n \nArtificial Intelligence is composed of two words  Artificial  and Intelligence , \nwhere Artificial defines  \"man -made,\"  and intelligence defines  \"thinking \npower\" , hence AI means  \"a man -made thinking power.\"  \nSo, we can define AI as:  \n \"It is a branch of computer science by which we can create intelligent \nmachines which can behave like a human, think like humans, and able to ma..."
+  },
+  {
+    "role": "user",
+    "content": "what is the name of this reg number 211316101007"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nIONS i/c VICE-CHANCELLORANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 19:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Mechatronics Engineering Degree & Branch: 227 Total No.of students Passed : 11 Rank Eligiblity :\n210416115044\n210416115014\n210416115050\n312816115004\n211616115011\n210416115030\n210416115031\n210416115036\n210416115051\n210416115062\n210416115011Reg.Number\n  SAMUEL PRIYAN M\n  DINESH KUMAR P\n  SASIDHARA..."
+  },
+  {
+    "role": "user",
+    "content": "How many students passed in Computer Science?"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nMay 2020 Examinations \nANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 8:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Computer Science and Engineering Degree & Branch: 7561 Total No.of students Passed : 21 Rank Eligiblity :\n111616104077\n211416104020\n922116104054\n113216104071\n211416104034\n211416104177\n511316104025\n211416104252\n211416104255\n312216104048\n111716104085\n210416104079\n412516104107\n811516104085\n4213161040..."
+  },
+  {
+    "role": "user",
+    "content": "list all the students details from Rajalakshmi engineering college"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nIONS i/c VICE-CHANCELLORANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 15:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Instrumentation and Control Engineering Degree & Branch: 99 Total No.of students Passed : 5 Rank Eligiblity :\n412516112003\n813816112022\n312316112004\n312316112013\n312316112048Reg.Number\n  ADITHYA G\n  KIRTHIKA G\n  ADHITHYAN S\n  FLORA SASHYA S\n  SAMYUKTHAA S SStudent Name\n  SRI SAIRAM ENGINEERING C..."
+  },
+  {
+    "role": "user",
+    "content": "Show students with registration numbers starting with 21"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nMay 2020 Examinations \nANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 2:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.Arch. Degree & Branch: 1351 Total No.of students Passed : 30 Rank Eligiblity :\n311315251097\n311715251078\n311215251022\n821515251023\n113615251048\n113715251028\n311415251005\n113715251031\n733415251025\n311315251100\n821515251009\n110215251068\n211815251009\n311315251023\n311715251093\n811915251014\n113715251009\n3..."
+  },
+  {
+    "role": "user",
+    "content": "what is the highest cgpa?"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nIONS i/c VICE-CHANCELLORANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 24:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Civil Engineering-(Tamil Medium) Degree & Branch: 29 Total No.of students Passed : 1 Rank Eligiblity :\n810016126045Reg.Number\n  SUCEELA SStudent Name\n  UNIVERSITY COLLEGE OF ENGINEERING, TIRUCHIRAPPALLI (BIT CAMPUS)Institute Name\n 7.58 CGPA \n1Rank Class\nFCS.No\n1Rank List April / May 2020 Examina..."
+  },
+  {
+    "role": "user",
+    "content": "Show Computer Science students with 21 series registration"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nMay 2020 Examinations \nANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 8:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Computer Science and Engineering Degree & Branch: 7561 Total No.of students Passed : 21 Rank Eligiblity :\n111616104077\n211416104020\n922116104054\n113216104071\n211416104034\n211416104177\n511316104025\n211416104252\n211416104255\n312216104048\n111716104085\n210416104079\n412516104107\n811516104085\n4213161040..."
+  },
+  {
+    "role": "user",
+    "content": "what is the cgpa of ADITHYA G?"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nIONS i/c VICE-CHANCELLORANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 27:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Manufacturing Engineering Degree & Branch: 39 Total No.of students Passed : 2 Rank Eligiblity :\n310316138034\n310316138031Reg.Number\n  MOWBRAY R V\n  MANIKANDA PRABHU DStudent Name\n  CENTRAL INSTITUTE OF PLASTICS ENGINEERING AND TECHNOLOGY\n  CENTRAL INSTITUTE OF PLASTICS ENGINEERING AND TECHNOLOGY..."
+  },
+  {
+    "role": "user",
+    "content": "Show complete student records with CGPA values"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nIONS i/c VICE-CHANCELLORANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 24:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Civil Engineering-(Tamil Medium) Degree & Branch: 29 Total No.of students Passed : 1 Rank Eligiblity :\n810016126045Reg.Number\n  SUCEELA SStudent Name\n  UNIVERSITY COLLEGE OF ENGINEERING, TIRUCHIRAPPALLI (BIT CAMPUS)Institute Name\n 7.58 CGPA \n1Rank Class\nFCS.No\n1Rank List April / May 2020 Examina..."
+  },
+  {
+    "role": "user",
+    "content": "Which college does ADITHYA G belong to?"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nIONS i/c VICE-CHANCELLORANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 26:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Geoinformatics Engineering Degree & Branch: 39 Total No.of students Passed : 2 Rank Eligiblity :\n953216135018\n953216135006Reg.Number\n  JESWIN TITUS C\n  ANANTHARAMAN VStudent Name\n  UNIVERSITY COLLEGE OF ENGINEERING, THOOTHUKUDI\n  UNIVERSITY COLLEGE OF ENGINEERING, THOOTHUKUDIInstitute Name\n 8.62..."
+  },
+  {
+    "role": "user",
+    "content": "Show the table for Instrumentation and Control Engineering"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nIONS i/c VICE-CHANCELLORANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 15:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Instrumentation and Control Engineering Degree & Branch: 99 Total No.of students Passed : 5 Rank Eligiblity :\n412516112003\n813816112022\n312316112004\n312316112013\n312316112048Reg.Number\n  ADITHYA G\n  KIRTHIKA G\n  ADHITHYAN S\n  FLORA SASHYA S\n  SAMYUKTHAA S SStudent Name\n  SRI SAIRAM ENGINEERING C..."
+  },
+  {
+    "role": "user",
+    "content": "Display all student data with CGPAs from page 15"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nIONS i/c VICE-CHANCELLORANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 24:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.E. Civil Engineering-(Tamil Medium) Degree & Branch: 29 Total No.of students Passed : 1 Rank Eligiblity :\n810016126045Reg.Number\n  SUCEELA SStudent Name\n  UNIVERSITY COLLEGE OF ENGINEERING, TIRUCHIRAPPALLI (BIT CAMPUS)Institute Name\n 7.58 CGPA \n1Rank Class\nFCS.No\n1Rank List April / May 2020 Examina..."
+  },
+  {
+    "role": "user",
+    "content": "Show complete student records with all columns"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nMay 2020 Examinations \nANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 2:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.Arch. Degree & Branch: 1351 Total No.of students Passed : 30 Rank Eligiblity :\n311315251097\n311715251078\n311215251022\n821515251023\n113615251048\n113715251028\n311415251005\n113715251031\n733415251025\n311315251100\n821515251009\n110215251068\n211815251009\n311315251023\n311715251093\n811915251014\n113715251009\n3..."
+  },
+  {
+    "role": "user",
+    "content": "Show ADITHYA G's complete record from the table"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'ug_aff_2020':\n\nMay 2020 Examinations \nANNA UNIVERSITY , CHENNAI :: 600025\nOFFICE OF THE CONTROLLER OF EXAMINATIONS Page 2:\nCGPA-Cumulative Grade Point Average ,FC - First Class, FWD - First Class with DistinctionB.Arch. Degree & Branch: 1351 Total No.of students Passed : 30 Rank Eligiblity :\n311315251097\n311715251078\n311215251022\n821515251023\n113615251048\n113715251028\n311415251005\n113715251031\n733415251025\n311315251100\n821515251009\n110215251068\n211815251009\n311315251023\n311715251093\n811915251014\n113715251009\n3..."
+  },
+  {
+    "role": "user",
+    "content": "what is supervised learning"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'UNIT-1':\n\nd the ability to \nautomatically transfer data over a network without requiring human -to-human or \nhuman -to-computer interaction.   \n\nPage 12:\n \nTopic:Foundations of AI and sub areas of AI:  \nAI into five distinct research areas  \n\uf0d8  Machine Learning  \n\uf0d8 Expert Systems  \n\uf0d8 Computer Vision  \n\uf0d8 Natural Language Processing  \n\uf0d8 Robotics  \n1.Machine Learning:  \nMachine learning (ML) is the science of  empowering machines to make decisions \nwithout human intervention . This sub -discipline forms the backbone of AI, \nenabling computers to learn and interpret patterns in images, sounds, and structure..."
+  },
+  {
+    "role": "user",
+    "content": "what is supervised learning"
+  },
+  {
+    "role": "assistant",
+    "content": "\n\ud83d\udcc4 **Document Search Results**\n\n\ud83d\udd0d **Relevant Content:**\nd the ability to\nautomatically transfer data over a network without requiring human -to-human or\nhuman -to-computer interaction.\nPage 12:\nTopic:Foundations of AI and sub areas of AI:\nAI into five distinct research areas\n\uf0d8  Machine Learning\n\uf0d8 Expert Systems\n\uf0d8 Computer Vision\n\uf0d8 Natural Language Processing\n\uf0d8 Robotics\n1.Machine Learning:\nMachine learning (ML) is the science of  empowering machines to make decisions\nwithout human intervention . This sub -discipline forms the backbone of AI,\nenabling computers to learn and interpret patterns in images, sounds, and structured\ndata using multidimensio...\n\n\ud83d\udcda *Information extracted from your uploaded documents*\n"
+  },
+  {
+    "role": "user",
+    "content": "Why Artificial Intelligence?"
+  },
+  {
+    "role": "assistant",
+    "content": "\n\ud83d\udcc4 **Document Search Results**\n\n\ud83d\udd0d **Relevant Content:**\ns composed, so the Intelligence is\nan intangible part of our brain which is a combination of  Reasoning,\nlearning, problem -solving perception, language understandin g, etc .\nTo achieve the above factors for a machine or software Artificial Intelligence\nrequires the following discipline:\no Mathematics\no Biology\no Psychology\no Sociology\no Computer Science\no Neurons Study\no Statistics\nPage 5:\nAdvantages of Artificial Intelligence :\nFollowing are some main advantages of Artificial Intelligence:\no High Accuracy with less errors:  AI machines or systems are prone to\nless errors and high accuracy as...\n\n\ud83d\udcda *Information extracted from your uploaded documents*\n"
+  },
+  {
+    "role": "user",
+    "content": "Why Artificial Intelligence?"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'UNIT-1':\n\ns composed, so the Intelligence is \nan intangible part of our brain which is a combination of  Reasoning, \nlearning, problem -solving perception, language understandin g, etc . \nTo achieve the above factors for a machine or software Artificial Intelligence \nrequires the following discipline:  \no Mathematics  \no Biology  \no Psychology  \no Sociology  \no Computer Science  \no Neurons Study  \no Statistics  \n\nPage 5:\n \nAdvantages of Artificial Intelligence : \nFollowing are some main advantages of Artificial Intelligence:  \no High Accuracy with less errors:  AI machines or systems are prone to \nless ..."
+  },
+  {
+    "role": "user",
+    "content": "in which year does the The first work which is now recognized as AI was done by\nWarren McCulloch and Walter pits"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'UNIT-1':\n\ncapabilities.  \n\nPage 7:\no No Original Creativity : As humans are so creative and can imagine \nsome new ideas but still AI machines cannot beat this power of human \nintelligence an d can not be creative and imaginative  \n \nTopic:History of Artificial Intelligence:  \nArtificial Intelligence is not a new word and not a new technology for \nresearchers. This technology is much older than you would imagine.  \n \n \n\n\nPage 8:\n \nMaturation of Artificial Intelligence (1943 -1952)  \no Year 1943:  The first work which is now recognized as AI was done by \nWarren McCulloch and Walter pits in 1943. They prop..."
+  },
+  {
+    "role": "user",
+    "content": " who was an English mathematician and\npioneered Machine learning in 1950"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the document 'UNIT-1':\n\ncapabilities.  \n\nPage 7:\no No Original Creativity : As humans are so creative and can imagine \nsome new ideas but still AI machines cannot beat this power of human \nintelligence an d can not be creative and imaginative  \n \nTopic:History of Artificial Intelligence:  \nArtificial Intelligence is not a new word and not a new technology for \nresearchers. This technology is much older than you would imagine.  \n \n \n\n\nPage 8:\n \nMaturation of Artificial Intelligence (1943 -1952)  \no Year 1943:  The first work which is now recognized as AI was done by \nWarren McCulloch and Walter pits in 1943. They prop..."
+  },
+  {
+    "role": "user",
+    "content": "who was an English mathematician and pioneered Machine learning in 1950"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udd0d The document mentions AI pioneers from 1943-1952, but I couldn't find specific information about an English mathematician from 1950. Based on historical knowledge, this likely refers to **Alan Turing**."
+  },
+  {
+    "role": "user",
+    "content": "in which year does Donald Hebb demonstrated an updating rule for modifying the\nconnection strength between neurons"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nUnsupervised learning."
+  },
+  {
+    "role": "user",
+    "content": "define unsupervised learning"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nUnsupervised learning."
+  },
+  {
+    "role": "user",
+    "content": "Why Artificial Intelligence?"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83c\udfaf **Answer:** Artificial Intelligence aims to create intelligent machines that can perform tasks typically requiring human intelligence like reasoning, learning, problem-solving, perception, and language understanding."
+  },
+  {
+    "role": "user",
+    "content": "what is machine learning"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nPage 12:\n \nTopic:Foundations of AI and sub areas of AI:  \nAI into five distinct research areas  \n\uf0d8  Machine Learning  \n\uf0d8 Expert Systems  \n\uf0d8 Computer Vision  \n\uf0d8 Natural Language Processing  \n\uf0d8 Robotics  \n1."
+  },
+  {
+    "role": "user",
+    "content": "define machine learning"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nPage 12:\n \nTopic:Foundations of AI and sub areas of AI:  \nAI into five distinct research areas  \n\uf0d8  Machine Learning  \n\uf0d8 Expert Systems  \n\uf0d8 Computer Vision  \n\uf0d8 Natural Language Processing  \n\uf0d8 Robotics  \n1."
+  },
+  {
+    "role": "user",
+    "content": "what is the difference between supervised and unsupervised learning"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nUnsupervised learning."
+  },
+  {
+    "role": "user",
+    "content": "types of ai"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nAI is one of the fascinating and universal fields of Computer science which has \na great scope in future."
+  },
+  {
+    "role": "user",
+    "content": "Define artificial intellegence"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nPage 2:\n \nArtificial Intelligence is composed of two words  Artificial  and Intelligence , \nwhere Artificial defines  \"man -made,\"  and intelligence defines  \"thinking \npower\" , hence AI means  \"a man -made thinking power."
+  },
+  {
+    "role": "user",
+    "content": "define machine learning"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nPage 12:\n \nTopic:Foundations of AI and sub areas of AI:  \nAI into five distinct research areas  \n\uf0d8  Machine Learning  \n\uf0d8 Expert Systems  \n\uf0d8 Computer Vision  \n\uf0d8 Natural Language Processing  \n\uf0d8 Robotics  \n1."
+  },
+  {
+    "role": "user",
+    "content": "what is artificial intelligence"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nAI is one of the fascinating and universal fields of Computer science which has \na great scope in future."
+  },
+  {
+    "role": "user",
+    "content": "list the goals of artificial intelligence"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\na path for other new technologies, new devices, and new \nOpportunities."
+  },
+  {
+    "role": "user",
+    "content": "list the goals of artificial intelligence"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udccb **Based on the document:**\n\n1. a path for other new technologies, new devices, and new \nOpportunities\n2. An i ntelligent connection of perception and action  \n\nPage 4:\n4\n3. Creating some system which can exhibit  intelligent behavior, learn new \nthings by itself, demonstrate, explain, and can advise to its user\n4. To create the AI \nfirst we should know that how intelligence is composed, so the Intelligence is \nan intangible part of our brain which is a combination of  Reaso own intelligence, and that is the \nawesomeness of AI\n5. Page 3:\nIt is belie ved that AI is not a new technology, and some people says that as per \nGreek myth, there were Mechanical men in early days which can work and \nbehave like humans\n6. Why Artificial Intelligence?  \nBefore Learning about Artificial Intelligence, we should know that  what is the \nimportance of AI and why should we learn it\n7. Following are some main \nreasons to learn about AI:  \no With the help of AI, you can create such software or devices which can \nsolve real -world problems very easily and with accuracy such as health \nissues, marketing, traffic issues, etc\n8. o AI opens a path for other new technologies, new devices, and new \nOpportunities\n"
+  },
+  {
+    "role": "user",
+    "content": "list the goals of artificial intelligence"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nGoals of Artificial Intelligence : \nFollowing are the main goals of Artificial Intelligence:  \n1 Replicate human intelligence  \n2 Building a machine which can perform tasks that requires human \nintelligence such as:  \no Proving a theorem  \no Playing chess  \no Plan some surgical operation  \no Driving a car in traffic  \n5."
+  },
+  {
+    "role": "user",
+    "content": "difference between supervised learning and unsupervised learning"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nlearning (ML) is the science of  empowering machines to make decisions \nwithout human intervention ML is fu rther subdivided into four types of \nlearning:  \n\uf0b7 Supervised learning : Given an array of features (i \uf0b7 Unsupervised learning : Given an array of features (e."
+  },
+  {
+    "role": "user",
+    "content": "Which was named as \"Logic Theorist\"?"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nAlan Turing publishes  \"Computing \nMachinery and Intelligence\"  in which he proposed a  test Simon created the \"first \nartificial intelligence program\"Which was named as  \"Logic Theorist\" In 2018 the three researchers \u2013 nicknamed the \u2018Godfathers of AI\u2019 - were awarded the Turing \nAward , which is considered the highest honour in computer science (equivalent to a Nobel Prize) for their \nfundamental contributions to artificial intelligence."
+  },
+  {
+    "role": "user",
+    "content": "what is the name of 311215251081"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\ncom anyone can generate and \ndownload to their phone a short personalised deepfake video message from Messi who invites your friends by \nname, to bring food and watch the big game with him \u2013 and it can even get Messi to provide the message in his \nvoice in English, Spanish, Portuguese or Turkish!FAKE FAKE\n\nPage 7:\nINTRODUCTION TO AI\nWorld Travel & Tourism Council< Contents  | 7\nArgentinian footballer Lionel Messi : Deepfake Messi Messages\nAI has therefore been regularly hitting the news headlines and as with all new trends, a few high profile cases \ncan propel a technology that is initially only used by a few early adopters, into global mass adoption For AI this \nhappened with the international release of a sophisticated AI powered chatbot, named ChatGPT, in November \n2022 from a company called OpenAI f a sophisticated AI powered chatbot, named ChatGPT, in November \n2022 from a company called OpenAI."
+  },
+  {
+    "role": "user",
+    "content": "what is the student name of this reg numver 311215251081"
+  },
+  {
+    "role": "assistant",
+    "content": "\ud83d\udcc4 **Based on the document:**\n\nof students Passed : 30 Rank Eligiblity :\n311315251097\n311715251078\n311215251022\n821515251023\n113615251048\n113715251028\n311415251005\n113715251031\n733415251025\n311315251100\n821515251009\n110215251068\n211815251009\n311315251023\n311715251093\n811915251014\n113715251009\n311315251009\n113715251041\n311315251122\n311415251025\n110215251012\n311215251110\n821515251001\n963415251025Reg Number\n  NANDITA S\n  PRAGATI S\n  CHITHAMBARA NATHAN M\n  JAYABHARATHI R\n  RINCY PAULIN S\n  MADHUMITAA A\n  ABOORVAA S S\n  MANIGANDAN D\n  SHALNE J\n  NIVEDHITA G\n  ANCHANA SUJITHA S\n  SUMAYYA A\n  ANAMIKA M\n  ASWINI S\n  SANJANA GOPALAKRISHNAN\n  KANNAL RM\n  AVANTHIKA S\n  AMATULLAH MADHIYA R\n  PREETHI D\n  ROUSHNI P\n  KARTHICK S\n  DIVYALAKSHMI S\n  VISHNU PRIYA S\n  AARTHI T\n  FAZAL KHAN AStudent Name\n  MEASI ACADEMY OF ARCHITECTURE\n  MOHAMED SATHAK A of students Passed : 30 Rank Eligiblity :\n311315251153\n311415251027\n311715251033\n313115251019\n510315251027\n311315251030\n311215251081\n311315251121\n311415251041\n211815251071\n311415251071\n211815251029\n311215251013\n311315251026\n963415251061\n311315251113\n963415251062\n510315251016\n311415251062\n311715251003\n211815251024\n311415251022\n722115251074\n311415251053\n113715251026Reg."
+  },
+  {
+    "role": "user",
+    "content": "what is the student name of this reg numver 311215251081"
+  },
+  {
+    "role": "assistant",
+    "content": "**\ud83d\udd22 Identified Numbers:** 311315251023, 311715251033, 211815251071, 733415251025, 311415251041\n\n**Context:**\nFound numerical references in the documents including: 311315251097, 311715251078, 311215251022"
+  },
+  {
+    "role": "user",
+    "content": "what is the student name of this reg numver 311215251081"
+  },
+  {
+    "role": "assistant",
+    "content": "**\ud83d\udd0d Search Results for Registration 311215251081:**\n\n**Found these registration numbers in documents:** 963415251061, 211416107028, 311715251003, 210416115014, 113216107004\n\n**Potential student names found in documents:**\n\u2022 OFFICE OF THE CONTROLLER OF EXAMINATIONS\n\nPage\n\n**Details:** Searching for specific data in the documents..."
+  },
+  {
+    "role": "user",
+    "content": "list the goals of artificial intelligence"
+  },
+  {
+    "role": "assistant",
+    "content": "**\ud83d\udcc4 Based on the documents:**\n\nGoals of Artificial Intelligence : \nFollowing are the main goals of Artificial Intelligence:  \n1. Why Artificial Intelligence?  \nBefore Learning about Artificial Intelligence, we should know that  what is the \nimportance of AI and why should we learn it. What Comprises to Artificial Intelligence?  \nArtificial Intelligence is not just a part of computer science even it's so vast \nand requires lots of other fact ors which can contribute to it."
+  }
+]

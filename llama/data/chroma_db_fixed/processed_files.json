@@ -1,0 +1,14 @@
+{
+  "UNIT-1": {
+    "chunk_count": 51,
+    "file_size": 680859,
+    "processed_at": 1761200851.5541782,
+    "has_tables": true
+  },
+  "AI_for_Everyone": {
+    "chunk_count": 51,
+    "file_size": 1990747,
+    "processed_at": 1761200872.2372568,
+    "has_tables": true
+  }
+}
