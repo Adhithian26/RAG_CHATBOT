@@ -402,8 +402,8 @@ def render_admin_interface(admin_ops, auth_system=None):
     if st.sidebar.button("🐛 Debug System", use_container_width=True):
         st.session_state.show_debug_info = True
 
-    # Tab-based interface
-    tab1, tab2, tab3 = st.tabs(["📤 Upload PDF", "📚 Manage Documents", "📊 System Status"])
+        # Tab-based interface
+    tab1, tab2, tab3, tab4 = st.tabs(["📤 Upload PDF", "📚 Manage Documents", "📊 System Status", "🧩 View Chunks"])
 
     with tab1:
         st.subheader("Upload and Process PDF")
@@ -531,6 +531,70 @@ def render_admin_interface(admin_ops, auth_system=None):
                 
         except Exception as e:
             st.error(f"❌ Error getting system status: {str(e)}")
+
+    with tab4:
+        st.subheader("Chunk Inspection")
+
+        try:
+            view_option = st.radio(
+                "View chunks from:",
+                ["All PDFs", "Specific PDF"],
+                horizontal=True,
+                key="admin_view_chunks_option"
+            )
+
+            if view_option == "Specific PDF":
+                processed_pdfs = admin_ops.get_list_of_processed_pdfs()
+                if processed_pdfs:
+                    selected_pdf = st.selectbox(
+                        "Select PDF to inspect:",
+                        processed_pdfs,
+                        key="admin_selected_chunks_pdf"
+                    )
+
+                    if st.button("Display Chunks", use_container_width=True, key="admin_display_chunks_btn"):
+                        chunks = admin_ops.rag_engine.get_chunks_for_pdf(selected_pdf)
+                        if chunks:
+                            st.success(f"Found {len(chunks)} chunks in '{selected_pdf}'")
+                            for idx, chunk in enumerate(sorted(chunks, key=lambda x: x.get("chunk_id", 0))):
+                                with st.expander(
+                                    f"Chunk {chunk.get('chunk_id', idx)} ({chunk.get('length', 0)} chars)",
+                                    expanded=(idx == 0)
+                                ):
+                                    st.markdown(chunk.get("content", ""))
+                                    st.caption(f"ID: {chunk.get('id', 'unknown')}")
+                        else:
+                            st.warning(f"No chunks found for {selected_pdf}")
+                else:
+                    st.info("No processed PDFs available yet.")
+            else:
+                all_chunks = admin_ops.rag_engine.get_all_chunks()
+                if all_chunks:
+                    total_chunks = sum(len(chunks) for chunks in all_chunks.values())
+                    st.success(f"Found {total_chunks} total chunks across {len(all_chunks)} PDFs")
+
+                    for pdf_name in sorted(all_chunks.keys()):
+                        chunks = all_chunks[pdf_name]
+                        with st.expander(f"{pdf_name} ({len(chunks)} chunks)", expanded=False):
+                            total_chars = sum(c.get("length", 0) for c in chunks)
+                            col1, col2, col3 = st.columns(3)
+                            with col1:
+                                st.metric("Chunks", len(chunks))
+                            with col2:
+                                st.metric("Total Size", f"{total_chars:,} chars")
+                            with col3:
+                                avg_size = total_chars // len(chunks) if chunks else 0
+                                st.metric("Avg Size", f"{avg_size} chars")
+
+                            st.markdown("---")
+                            for idx, chunk in enumerate(sorted(chunks, key=lambda x: x.get("chunk_id", 0))):
+                                with st.expander(f"Chunk {chunk.get('chunk_id', idx)} ({chunk.get('length', 0)} chars)"):
+                                    st.markdown(chunk.get("content", ""))
+                                    st.caption(f"ID: {chunk.get('id', 'unknown')}")
+                else:
+                    st.info("No chunks available yet. Process some PDFs first!")
+        except Exception as e:
+            st.error(f"Error viewing chunks: {e}")
 
     # Debug information
     if st.session_state.get('show_debug_info', False):

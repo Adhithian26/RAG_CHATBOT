@@ -1,6 +1,11 @@
 rag_env_mine/
 venv/
 env/
+pcr/
+llama/data/
+data/
+.vscode/
+.env
 __pycache__/
 *.pyc
 *.dll

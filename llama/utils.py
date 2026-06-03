@@ -403,7 +403,7 @@ class AgentUIComponents:
     def display_agent_metrics(metrics: Dict):
         """Display agent metrics in sidebar"""
         st.sidebar.markdown("---")
-        st.sidebar.markdown("### 🤖 Agent Analytics")
+        st.sidebar.markdown("###  Agent Analytics")
         
         if "confidence" in metrics:
             # Confidence gauge
@@ -412,7 +412,7 @@ class AgentUIComponents:
             st.sidebar.markdown(f"**Confidence:** :{color}[{confidence}%]")
         
         if "reasoning_used" in metrics:
-            st.sidebar.markdown(f"**Advanced Reasoning:** {'✅ Enabled' if metrics.get('reasoning_used') else '⚡ Basic'}")
+            st.sidebar.markdown(f"**Advanced Reasoning:** {' Enabled' if metrics.get('reasoning_used') else '⚡ Basic'}")
         
         if "context_quality" in metrics:
             quality = metrics.get("context_quality", 0)
@@ -428,7 +428,7 @@ class AgentUIComponents:
     @staticmethod
     def display_source_analysis(source_details: List[Dict], agent_metrics: Dict):
         """Enhanced source analysis display"""
-        with st.expander("📊 Source Analysis", expanded=False):
+        with st.expander(" Source Analysis", expanded=False):
             if source_details:
                 for source in source_details:
                     col1, col2 = st.columns([3, 1])
@@ -447,7 +447,7 @@ class AgentUIComponents:
                 st.markdown("---")
                 st.markdown("**Agent Assessment:**")
                 if agent_metrics.get("verification_passed", True):
-                    st.success("✅ Answer verified against sources")
+                    st.success(" Answer verified against sources")
                 else:
                     st.warning("⚠ Answer may contain unsupported claims")
 
@@ -465,7 +465,7 @@ class AIAgentWrapper:
         self.analyzer = AgentResponseAnalyzer()
         self.ui = AgentUIComponents()
         
-        logger.info("🚀 AI Agent Wrapper initialized")
+        logger.info(" AI Agent Wrapper initialized")
     
     def enhanced_search(self, query: str, user_id: str = "default", 
                        use_advanced_reasoning: bool = True) -> Dict:
@@ -523,6 +523,94 @@ class AIAgentWrapper:
             "query_suggestions": self.memory.get_query_suggestions(query)
         }
 
+# ==================== TOPIC EXTRACTION UTILITY ====================
+
+def extract_key_topics(text: str) -> List[str]:
+    """
+    Extract key topics from text using NLP-like techniques.
+    
+    Combines:
+    - Noun phrase extraction
+    - Keyword frequency analysis
+    - Stop word filtering
+    
+    Args:
+        text: Input text to extract topics from
+        
+    Returns:
+        List of key topics (strings)
+    """
+    if not text or len(text) < 3:
+        return []
+    
+    # Common stop words to filter out
+    stop_words = {
+        'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
+        'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been',
+        'about', 'as', 'just', 'like', 'this', 'that', 'these', 'those',
+        'what', 'which', 'who', 'when', 'where', 'why', 'how', 'can', 'could',
+        'would', 'should', 'will', 'do', 'does', 'did', 'have', 'has', 'had',
+        'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her',
+        'us', 'them', 'my', 'your', 'his', 'her', 'our', 'their', 'if',
+        'please', 'thank', 'thanks', 'ok', 'okay', 'yes', 'no'
+    }
+    
+    # Convert to lowercase and split
+    text_lower = text.lower()
+    
+    # Remove punctuation but keep spaces
+    text_clean = re.sub(r'[^\w\s]', ' ', text_lower)
+    
+    # Split into words
+    words = text_clean.split()
+    
+    # Filter: remove stop words and very short words
+    important_words = [
+        w for w in words 
+        if len(w) > 2 and w not in stop_words and w.isalpha()
+    ]
+    
+    # Find word frequencies
+    word_freq = {}
+    for word in important_words:
+        word_freq[word] = word_freq.get(word, 0) + 1
+    
+    # Sort by frequency and get top words
+    sorted_words = sorted(word_freq.items(), key=lambda x: x[1], reverse=True)
+    
+    # Extract top topics (limit to 5 topics max, min frequency of 1)
+    topics = [word for word, freq in sorted_words[:5]]
+    
+    # Try to find 2-word phrases (noun phrases)
+    bi_grams = []
+    for i in range(len(important_words) - 1):
+        if important_words[i+1] not in stop_words:
+            phrase = f"{important_words[i]} {important_words[i+1]}"
+            bi_grams.append(phrase)
+    
+    # Add frequent bi-grams if they appear more than once
+    bigram_freq = {}
+    for bg in bi_grams:
+        bigram_freq[bg] = bigram_freq.get(bg, 0) + 1
+    
+    frequent_bigrams = [
+        bg for bg, freq in sorted(bigram_freq.items(), key=lambda x: x[1], reverse=True)
+        if freq >= 1
+    ][:3]
+    
+    # Combine single words and phrases, prioritize phrases
+    all_topics = frequent_bigrams + topics
+    
+    # Remove duplicates while preserving order
+    seen = set()
+    final_topics = []
+    for topic in all_topics:
+        if topic not in seen:
+            final_topics.append(topic)
+            seen.add(topic)
+    
+    return final_topics[:5]  # Return top 5 topics
+
 # ==================== BACKWARD COMPATIBILITY ====================
 
 # Keep all your existing classes for backward compatibility
@@ -555,17 +643,16 @@ class AdvancedChatManager:
         return os.path.join(self._user_folder(username), f"{chat_id}.json")
 
     def create_new_chat(self, username: str, topic: str = None) -> str:
+        # Always create with timestamp-based ID (will be renamed after first message)
         chat_id = f"chat_{int(time.time())}"
-        if topic:
-            # keep topic short and safe in filename
-            safe_topic = re.sub(r"[^a-zA-Z0-9_\-]", "_", topic)[:50]
-            chat_id = f"{safe_topic}_{chat_id}"
 
         initial = {
             "id": chat_id,
             "topic": topic or "",
             "created_at": time.time(),
-            "messages": []
+            "key_topics": extract_key_topics(topic) if topic else [],
+            "messages": [],
+            "title_generated": False  # Flag to track if title was auto-generated
         }
 
         try:
@@ -575,6 +662,43 @@ class AdvancedChatManager:
             return chat_id
         except Exception:
             return chat_id
+
+    def update_chat_title(self, username: str, old_chat_id: str, new_title: str) -> str:
+        """Rename chat file based on auto-generated title from first message"""
+        try:
+            # Create safe filename from title
+            safe_title = re.sub(r"[^a-zA-Z0-9_\-]", "_", new_title)[:50]
+            
+            # If title is same as old ID, don't rename
+            if safe_title == old_chat_id:
+                return old_chat_id
+            
+            # Get the old chat data
+            old_path = self._chat_path(username, old_chat_id)
+            if not os.path.exists(old_path):
+                return old_chat_id
+            
+            with open(old_path, 'r', encoding='utf-8') as f:
+                chat_data = json.load(f)
+            
+            # Update chat metadata
+            chat_data['id'] = safe_title
+            chat_data['topic'] = new_title
+            chat_data['title_generated'] = True
+            
+            # Write to new file
+            new_path = self._chat_path(username, safe_title)
+            with open(new_path, 'w', encoding='utf-8') as f:
+                json.dump(chat_data, f, indent=2)
+            
+            # Delete old file
+            os.remove(old_path)
+            
+            return safe_title
+        except Exception as e:
+            logger.error(f"Failed to update chat title: {e}")
+            return old_chat_id
+
 
     def get_user_chats(self, username: str) -> list:
         folder = self._user_folder(username)
@@ -611,7 +735,7 @@ class AdvancedChatManager:
             pass
         return []
 
-    def add_message(self, username: str, chat_id: str, role: str, content: str) -> bool:
+    def add_message(self, username: str, chat_id: str, role: str, content: str, sources: list = None) -> bool:
         path = self._chat_path(username, chat_id)
         try:
             if not os.path.exists(path):
@@ -621,11 +745,26 @@ class AdvancedChatManager:
             with open(path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
 
-            data.setdefault('messages', []).append({
+            # Extract key topics from message content
+            message_topics = extract_key_topics(content)
+            
+            message = {
                 'role': role,
                 'content': content,
-                'created_at': time.time()
-            })
+                'created_at': time.time(),
+                'topics': message_topics  # Store topics for this specific message
+            }
+            
+            # Include sources if provided
+            if sources:
+                message['sources'] = sources
+
+            data.setdefault('messages', []).append(message)
+            
+            # Update chat-level key_topics: merge all message topics
+            existing_topics = set(data.get('key_topics', []))
+            existing_topics.update(message_topics)
+            data['key_topics'] = list(existing_topics)[:10]  # Keep top 10 topics max
 
             with open(path, 'w', encoding='utf-8') as f:
                 json.dump(data, f, indent=2)
@@ -650,16 +789,16 @@ class ChatHistoryManager:
 
 # Test the agent system
 if __name__ == "__main__":
-    print("🧪 Testing AI Agent System...")
+    print(" Testing AI Agent System...")
     
     # Test memory system
     memory = AgentMemory()
-    print(f"✅ Memory system: {len(memory.fact_cache)} cached facts")
+    print(f" Memory system: {len(memory.fact_cache)} cached facts")
     
     # Test analyzer
     analyzer = AgentResponseAnalyzer()
     test_answer = "The quick brown fox jumps over the lazy dog. This is a test sentence for analysis."
     metrics = analyzer.analyze_response_quality(test_answer, [test_answer])
-    print(f"✅ Response analyzer: {metrics['overall_score']}% quality")
+    print(f" Response analyzer: {metrics['overall_score']}% quality")
     
     print("🎯 AI Agent utilities ready!")

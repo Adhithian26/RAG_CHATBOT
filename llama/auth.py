@@ -416,6 +416,40 @@ class AdvancedAuthSystem:
         
         return True, payload
 
+    def reset_user_password(self, target_username: str, new_password: str, performed_by: str) -> Tuple[bool, str]:
+        """Reset password for a user (called by manager/admin)"""
+        users = self._load_users()
+
+        if target_username not in users:
+            return False, "User not found"
+
+        # Validate new password strength
+        is_valid, msg = self._validate_password_strength(new_password)
+        if not is_valid:
+            return False, f"Weak password: {msg}"
+
+        users[target_username]["password"] = self._hash_password(new_password)
+        self._save_users(users)
+        self._audit_log(performed_by, "PASSWORD_RESET", f"Reset password for: {target_username}")
+        return True, f"Password for '{target_username}' has been reset successfully"
+
+    def toggle_user_active(self, target_username: str, performed_by: str) -> Tuple[bool, str]:
+        """Toggle active/inactive status for a user"""
+        users = self._load_users()
+
+        if target_username not in users:
+            return False, "User not found"
+
+        current_status = users[target_username].get("is_active", True)
+        new_status = not current_status
+        users[target_username]["is_active"] = new_status
+        self._save_users(users)
+
+        action = "ACTIVATED" if new_status else "DEACTIVATED"
+        self._audit_log(performed_by, f"USER_{action}", f"User: {target_username}")
+        status_word = "activated" if new_status else "deactivated"
+        return True, f"User '{target_username}' has been {status_word}"
+
 
 def initialize_session_state():
     """Initialize advanced session state management"""
@@ -523,10 +557,6 @@ def render_login(auth_system: AdvancedAuthSystem):
             st.markdown("**👤 User Account**")
             st.code("Username: user1\nPassword: User123!")
             st.caption("Standard user access")
-    
-    # Security notice
-    st.markdown("---")
-    st.caption("🔒 **Security Notice**: This system uses advanced encryption and security measures to protect your data.")
 
 
 def render_user_management(auth_system: AdvancedAuthSystem):
@@ -613,6 +643,276 @@ def render_user_management(auth_system: AdvancedAuthSystem):
                             st.rerun()
                         else:
                             st.error(message)
+
+
+def render_manager_portal(auth_system: AdvancedAuthSystem):
+    """Full Manager Portal - Create & manage user credentials"""
+
+    st.markdown("""
+        <div style='
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 24px 32px;
+            border-radius: 16px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(100,180,255,0.15);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        '>
+            <h2 style='color:#64b4ff; margin:0; font-size:1.8rem;'>👔 Manager Portal</h2>
+            <p style='color:#a0b4cc; margin:6px 0 0 0; font-size:0.95rem;'>
+                Create user accounts, manage credentials, and control access.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # ── Stats Bar ──────────────────────────────────────────────────────────
+    stats = auth_system.get_user_stats()
+    all_users = auth_system.get_all_users()
+    # Manager can only see non-admin users
+    managed_users = {u: d for u, d in all_users.items() if d.get("role") != "admin"}
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("👥 Managed Users", len(managed_users))
+    with col2:
+        active_count = sum(1 for d in managed_users.values() if d.get("is_active", True))
+        st.metric("✅ Active", active_count)
+    with col3:
+        inactive_count = len(managed_users) - active_count
+        st.metric("🔴 Inactive", inactive_count)
+    with col4:
+        recent = sum(
+            1 for d in managed_users.values()
+            if d.get("last_login") and
+            (datetime.now() - datetime.fromisoformat(d["last_login"])).days <= 7
+        )
+        st.metric("🕐 Recent Logins", recent)
+
+    st.markdown("---")
+
+    # ── Tabs ───────────────────────────────────────────────────────────────
+    tab1, tab2, tab3 = st.tabs(["➕ Create User", "🔑 Manage Credentials", "📋 User List"])
+
+    # ── TAB 1 : Create User ────────────────────────────────────────────────
+    with tab1:
+        st.markdown("### ➕ Create New User Account")
+        st.info(
+            "📌 As a manager you can create **user** accounts only. "
+            "Contact an administrator to create manager accounts."
+        )
+
+        with st.form("manager_create_user_form", clear_on_submit=True):
+            col_a, col_b = st.columns(2)
+            with col_a:
+                new_username = st.text_input(
+                    "👤 Username *",
+                    placeholder="e.g. john_doe",
+                    help="3–20 characters: letters, numbers, underscores"
+                )
+                new_email = st.text_input(
+                    "📧 Email",
+                    placeholder="user@company.com"
+                )
+            with col_b:
+                new_password = st.text_input(
+                    "🔒 Password *",
+                    type="password",
+                    placeholder="Min 8 chars, upper/lower/digit/special"
+                )
+                confirm_password = st.text_input(
+                    "🔒 Confirm Password *",
+                    type="password",
+                    placeholder="Repeat password"
+                )
+
+            # Password strength hint
+            st.caption(
+                "🛡️ **Password rules:** Min 8 chars · Uppercase · Lowercase · Digit · Special char (!@#$%^&*)"
+            )
+
+            submitted = st.form_submit_button(
+                "🚀 Create User Account",
+                use_container_width=True,
+                type="primary"
+            )
+
+            if submitted:
+                if not new_username or not new_password or not confirm_password:
+                    st.error("❌ Username and both password fields are required.")
+                elif new_password != confirm_password:
+                    st.error("❌ Passwords do not match.")
+                else:
+                    success, message = auth_system.create_user(
+                        new_username, new_password, "user", new_email
+                    )
+                    if success:
+                        st.success(f"✅ {message}")
+                        st.balloons()
+                        # Show credential card
+                        st.markdown("""
+                            <div style='
+                                background:#0d2137;
+                                border:1px solid #2563eb;
+                                border-radius:10px;
+                                padding:16px 20px;
+                                margin-top:12px;
+                            '>
+                                <b style='color:#64b4ff'>📋 Credentials to share with user:</b><br><br>
+                        """, unsafe_allow_html=True)
+                        st.code(f"Username : {new_username}\nPassword : {new_password}\nRole     : user", language="text")
+                        st.markdown("</div>", unsafe_allow_html=True)
+                        st.warning("⚠️ Share these credentials securely. The password cannot be retrieved later.")
+                    else:
+                        st.error(f"❌ {message}")
+
+    # ── TAB 2 : Manage Credentials ─────────────────────────────────────────
+    with tab2:
+        st.markdown("### 🔑 Reset User Password")
+        st.caption("You can reset passwords for any non-admin user account.")
+
+        if not managed_users:
+            st.info("No users to manage yet. Create one in the **Create User** tab.")
+        else:
+            user_options = list(managed_users.keys())
+            selected_user = st.selectbox(
+                "Select user to manage",
+                user_options,
+                key="mgr_select_reset_user"
+            )
+
+            if selected_user:
+                u_data = managed_users[selected_user]
+                # User info card
+                status_badge = (
+                    "🟢 Active" if u_data.get("is_active", True) else "🔴 Inactive"
+                )
+                st.markdown(f"""
+                    <div style='
+                        background:#0d2137;
+                        border-radius:10px;
+                        padding:14px 18px;
+                        border:1px solid rgba(100,180,255,0.2);
+                        margin-bottom:16px;
+                    '>
+                        <b style='color:#64b4ff'>👤 {selected_user}</b>
+                        &nbsp;&nbsp;
+                        <span style='color:#a0b4cc; font-size:0.85rem;'>{status_badge}</span><br>
+                        <span style='color:#a0b4cc; font-size:0.85rem;'>
+                            Role: {u_data.get('role','user').capitalize()} &nbsp;|
+                            Email: {u_data.get('email','N/A')} &nbsp;|
+                            Last login: {u_data.get('last_login','Never') or 'Never'}
+                        </span>
+                    </div>
+                """, unsafe_allow_html=True)
+
+                # Reset password section
+                with st.expander("🔒 Reset Password", expanded=True):
+                    with st.form(f"reset_pw_form_{selected_user}"):
+                        new_pw = st.text_input(
+                            "New Password",
+                            type="password",
+                            placeholder="Enter new password for this user"
+                        )
+                        confirm_pw = st.text_input(
+                            "Confirm New Password",
+                            type="password",
+                            placeholder="Repeat new password"
+                        )
+                        reset_btn = st.form_submit_button(
+                            "🔄 Reset Password",
+                            type="primary",
+                            use_container_width=True
+                        )
+                        if reset_btn:
+                            if not new_pw or not confirm_pw:
+                                st.error("❌ Both password fields are required.")
+                            elif new_pw != confirm_pw:
+                                st.error("❌ Passwords do not match.")
+                            else:
+                                ok, msg = auth_system.reset_user_password(
+                                    selected_user, new_pw,
+                                    performed_by=st.session_state.get("current_user", "manager")
+                                )
+                                if ok:
+                                    st.success(f"✅ {msg}")
+                                    st.code(
+                                        f"Username : {selected_user}\nNew Password : {new_pw}",
+                                        language="text"
+                                    )
+                                    st.warning("⚠️ Share these updated credentials securely.")
+                                else:
+                                    st.error(f"❌ {msg}")
+
+                # Toggle active/inactive
+                st.markdown("---")
+                current_active = u_data.get("is_active", True)
+                toggle_label = "🚫 Deactivate Account" if current_active else "✅ Activate Account"
+                toggle_help = (
+                    "Prevents this user from logging in."
+                    if current_active else
+                    "Allows this user to log in again."
+                )
+                if st.button(toggle_label, help=toggle_help, key=f"toggle_{selected_user}"):
+                    ok, msg = auth_system.toggle_user_active(
+                        selected_user,
+                        performed_by=st.session_state.get("current_user", "manager")
+                    )
+                    if ok:
+                        st.success(f"✅ {msg}")
+                        st.rerun()
+                    else:
+                        st.error(f"❌ {msg}")
+
+    # ── TAB 3 : User List ──────────────────────────────────────────────────
+    with tab3:
+        st.markdown("### 📋 All Managed Users")
+
+        if not managed_users:
+            st.info("No users yet. Create accounts from the **Create User** tab.")
+        else:
+            # Quick search
+            search_term = st.text_input("🔍 Search users", placeholder="Filter by username or email...")
+            filtered = {
+                u: d for u, d in managed_users.items()
+                if search_term.lower() in u.lower() or
+                   search_term.lower() in d.get("email", "").lower()
+            } if search_term else managed_users
+
+            for uname, udata in filtered.items():
+                is_active = udata.get("is_active", True)
+                role = udata.get("role", "user")
+                last_login = udata.get("last_login") or "Never"
+                created = udata.get("created_at", "N/A")
+
+                status_icon = "🟢" if is_active else "🔴"
+                role_icon = {"user": "👤", "manager": "👔"}.get(role, "👤")
+
+                with st.expander(
+                    f"{status_icon} {role_icon} {uname}  —  {udata.get('email','No email')}",
+                    expanded=False
+                ):
+                    c1, c2 = st.columns([3, 1])
+                    with c1:
+                        st.markdown(f"""
+                            | Field | Value |
+                            |---|---|
+                            | **Role** | `{role}` |
+                            | **Email** | {udata.get('email','N/A')} |
+                            | **Status** | {'✅ Active' if is_active else '❌ Inactive'} |
+                            | **Created** | {created[:10] if created != 'N/A' else 'N/A'} |
+                            | **Last Login** | {last_login[:19] if last_login != 'Never' else 'Never'} |
+                        """)
+                    with c2:
+                        toggle_lbl = "🚫 Deactivate" if is_active else "✅ Activate"
+                        if st.button(toggle_lbl, key=f"list_toggle_{uname}", use_container_width=True):
+                            ok, msg = auth_system.toggle_user_active(
+                                uname,
+                                performed_by=st.session_state.get("current_user", "manager")
+                            )
+                            if ok:
+                                st.success(msg)
+                                st.rerun()
+                            else:
+                                st.error(msg)
 
 
 # Backward compatibility
