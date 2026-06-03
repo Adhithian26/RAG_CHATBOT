@@ -136,9 +136,9 @@ When first run, `auth.py` automatically initializes default credentials inside `
 
 | Account Role | Default Username | Default Password | Features Available |
 | :--- | :--- | :--- | :--- |
-| **Admin** | `admin` | `admin123` | Document upload, processing, deletion, chunk-level DB viewer, system telemetry, and user logs. |
-| **Manager** | `manager` | `manager123` | Add/delete users, update access roles, and view login telemetry statistics. |
-| **User** | `user1` | `user123` | Conversational document querying, audio speaker controls, and chat history. |
+| **Admin** | `admin` | `admin123!` | Document upload, processing, deletion, chunk-level DB viewer, system telemetry, and user logs. |
+| **Manager** | `manager` | `manager123!` | Add/delete users, update access roles, and view login telemetry statistics. |
+| **User** | `user1` | `user123!` | Conversational document querying, audio speaker controls, and chat history. |
 
 ---
 
